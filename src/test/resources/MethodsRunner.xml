@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Testing">
+    <parameter name="browser" value="chrome"/>
+
+
+    <test name="ExcludeMethod">
+        <classes>
+            <class name="Methods.ExcludeTest">
+                <methods>
+                    <exclude name="AddToCart"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="IncludeMethod">
+        <classes>
+            <class name="Methods.IncludeTest">
+                <methods>
+                    <include name="AddToCart"/>
+                    <include name="ClickOnMenu"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="ExcludeOrIncludeMethod">
+        <classes>
+            <class name="Methods.ExcludeOrInclude">
+                <methods>
+                    <include name="Menu.*"/>
+                    <exclude name="Add.*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

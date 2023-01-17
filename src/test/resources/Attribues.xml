@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Testing">
+    <parameter name="browser" value="chrome"/>
+
+    <test name="Enable=False">
+        <classes>
+<!--                        <class name="Attributes.EnableTest"/>-->
+        </classes>
+    </test>
+
+
+    <test name="DependsOnMethod">
+        <classes>
+                        <class name="Attributes.DependOnMethod"/>
+        </classes>
+    </test>
+
+
+    <test name="timeOut">
+        <classes>
+<!--            <class name="Attributes.timeOut"/>-->
+        </classes>
+
+    </test>
+
+
+</suite>

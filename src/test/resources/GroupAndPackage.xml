@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Testing">
+    <parameter name="browser" value="chrome"/>
+
+
+        <test name="runTestAtPackageLevel">
+            <packages>
+                <package name="Methods"/>
+            </packages>
+        </test>
+
+
+    <test name="GroupTests">
+        <groups>
+            <run>
+                <include name="Smoking"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="Methods.ExcludeTest"/>
+            <class name="Methods.IncludeTest"/>
+            <class name="Methods.ExcludeOrInclude"/>
+        </classes>
+    </test>
+
+
+</suite>

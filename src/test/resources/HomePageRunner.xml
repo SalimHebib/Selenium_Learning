@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Testing">
+       <parameter name="browser" value="chrome"/>
+    <listeners>
+        <listener class-name="HomePage.listeners"/>
+    </listeners>
+    <test thread-count="2" parallel="methods" name="ListenersModule">
+        <classes>
+<!--            <class name="HomePage.screenShot"/>-->
+<!--            <class name="HomePage.priority"/>-->
+<!--            <class name="HomePage.assertion"/>-->
+            <class name="HomePage.dataProvider"/>
+<!--            <class name="HomePage.listeners"/>-->
+<!--            <class name="HomePage.TestListeners"/>-->
+<!--            <class name="HomePage.parallel"/>-->
+        </classes>
+    </test>
+</suite>
+
+

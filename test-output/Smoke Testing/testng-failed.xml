@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Smoke Testing]" guice-stage="DEVELOPMENT">
+  <parameter name="browser" value="chrome"/>
+  <listeners>
+    <listener class-name="HomePage.listeners"/>
+  </listeners>
+  <test thread-count="5" parallel="methods" name="ListenersModule(failed)">
+    <classes>
+      <class name="HomePage.screenShot">
+        <methods>
+          <include name="tearDown"/>
+          <include name="AfterSuite"/>
+          <include name="skippedTest"/>
+          <include name="setUp"/>
+          <include name="BeforeSuite"/>
+          <include name="ShoppingCart"/>
+        </methods>
+      </class> <!-- HomePage.screenShot -->
+    </classes>
+  </test> <!-- ListenersModule(failed) -->
+</suite> <!-- Failed suite [Smoke Testing] -->
