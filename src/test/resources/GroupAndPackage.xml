@@ -5,11 +5,11 @@
     <parameter name="browser" value="chrome"/>
 
 
-        <test name="runTestAtPackageLevel">
-            <packages>
-                <package name="Methods"/>
-            </packages>
-        </test>
+<!--        <test name="runTestAtPackageLevel">-->
+<!--            <packages>-->
+<!--                <package name="Methods"/>-->
+<!--            </packages>-->
+<!--        </test>-->
 
 
     <test name="GroupTests">

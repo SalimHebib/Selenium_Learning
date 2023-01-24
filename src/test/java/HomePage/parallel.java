@@ -8,9 +8,8 @@ public class parallel extends CommonApi {
 
 
 
-//     to run it disable login from commonApi
 
-    @Test
+     @Test
     public void Logo() {
 
         getDriver().findElement(By.className("login_logo")).isDisplayed();

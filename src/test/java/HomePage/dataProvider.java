@@ -17,6 +17,7 @@ public class dataProvider extends CommonApi {
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.name("login-button")).click();
 
+
         System.out.println("User got successfully Logged in using username :" + userName + " and password :" + password);
     }
 
@@ -26,6 +27,7 @@ public class dataProvider extends CommonApi {
         Object[][] data = new Object[4][2];
         data[0][0] = "standard_user";
         data[0][1] = "secret_sauce";
+
 
         data[1][0] = "locked_out_user";
         data[1][1] = "secret_sauce";

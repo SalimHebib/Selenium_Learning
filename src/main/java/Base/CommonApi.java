@@ -2,10 +2,7 @@ package Base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
@@ -27,6 +24,7 @@ public class CommonApi {
 
     public WebDriver getDriver() {
         return driver;
+
     }
 
     Properties prop = Utility.loadProperties();
@@ -34,8 +32,8 @@ public class CommonApi {
     String Url = prop.getProperty("URL", "");
     String duration = prop.getProperty("implicit.wait", "10");
     String takeScreenshot = prop.getProperty("take.screenshot", "false");
-    String captureScreenshot = prop.getProperty("capture.screenshot", "false");
-    String takeCapture = prop.getProperty("take.capture", "false");
+    String takeScreenshot2 = prop.getProperty("take.screenshot2", "false");
+    String takeScreenshot3 = prop.getProperty("take.screenshot3", "false");
     String UserName = prop.getProperty("UserName", "standard_user");
     String Password = prop.getProperty("Password", "secret_sauce");
     String maximizeBrowser = prop.getProperty("maximize.browser", "true");
@@ -79,7 +77,7 @@ public class CommonApi {
     @AfterMethod
 
     public void tearDown(ITestResult result) {
-        screenShotAfterEachTestMethod(result);
+        ScreenShot(result);
         driver.quit();
     }
 
@@ -91,67 +89,49 @@ public class CommonApi {
     }
 
 
-    public void takeScreenshot(String screenshotName) {
-        DateFormat df = new SimpleDateFormat("MMddyyyyHHmma");
-        Date date = new Date();
-        df.format(date);
+    public void ScreenShot(ITestResult result) {
 
-        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\ScreenshotsFailedTest\\" + screenshotName + " " + df.format(date) + ".jpeg"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-    }
-
-    public void takePicture(String name) {
+        String name = result.getName();
 
         DateFormat df = new SimpleDateFormat("MMddyyyyHHmma");
         Date date = new Date();
         df.format(date);
 
-        if (captureScreenshot.equalsIgnoreCase("true")) {
-            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\ScreenshotsPassedTests\\ " + name + " " + df.format(date) + ".jpeg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        File file;
 
-        }
-    }
-
-    public void photographer(String name) {
-        DateFormat df = new SimpleDateFormat("MMddyyyyHHmma");
-        Date date = new Date();
-        df.format(date);
-
-        if (takeCapture.equalsIgnoreCase("true")) {
-            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\ScreenshotsIgnoredTests\\ " + name + " " + df.format(date) + ".jpeg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void screenShotAfterEachTestMethod(ITestResult result) {
         if (takeScreenshot.equalsIgnoreCase("true"))
             if (result.getStatus() == ITestResult.FAILURE) {
-                takeScreenshot(result.getName());
-            } else if (result.getStatus() == ITestResult.SUCCESS) {
-                takePicture(result.getName());
-            } else if (result.getStatus() == ITestResult.SKIP) {
-                photographer(result.getName());
-            }
+                file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                try {
+                    FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\Screenshots\\ScreenshotsFailedTest\\ " + name + " " + df.format(date) + ".jpeg"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
+
+            } else if (takeScreenshot2.equalsIgnoreCase("true"))
+                if (result.getStatus() == ITestResult.SUCCESS) {
+                    file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                    try {
+                        FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\Screenshots\\ScreenshotsPassedTest\\ " + name + " " + df.format(date) + ".jpeg"));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                } else if (takeScreenshot3.equalsIgnoreCase("true"))
+                    if (result.getStatus() == ITestResult.SKIP) {
+                        file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                        try {
+                            FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\Screenshots\\ScreenshotsSkippedTest\\ " + name + " " + df.format(date) + ".jpeg"));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
 
     }
 
 }
+
+
 

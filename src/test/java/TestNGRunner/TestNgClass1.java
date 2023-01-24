@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class TestNgClass1 extends CommonApi {
 
-    @Test(invocationCount = 3)
+    @Test
     public void ClickOnMenu() {
 
         getDriver().findElement(By.id("react-burger-menu-btn")).click();

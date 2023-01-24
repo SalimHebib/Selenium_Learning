@@ -20,7 +20,7 @@ public class IncludeTest extends CommonApi {
 
 
     @Test(groups = {"Smoking"})
-    public void AddToCart(){
+    public void AddToCart() {
         getDriver().findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
 
     }

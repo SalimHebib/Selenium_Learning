@@ -20,7 +20,7 @@ public class ExcludeOrInclude extends CommonApi {
 
 
     @Test
-    public void AddToCart(){
+    public void AddToCart() {
         getDriver().findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
 
     }
